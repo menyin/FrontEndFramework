@@ -1,0 +1,257 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../css/cnyui-framework.css"/>
+    <link rel="stylesheet" href="../../js/tree/tree.css"/>
+    <script src="../../js/jquery/jquery-1.8.2.min.js"></script>
+    <script src="../../js/lhgdialog/lhgdialog.min.js"></script>
+    <script src="../../js/cnyui-framework.js"></script>
+    <script src="../../js/tree/tree.js"></script>
+
+</head>
+<body>
+<h1>以下为本框架公共方法使用的实例</h1><br/>
+<h3>获取地址栏参数</h3>
+<p style="color:red;">注：当有多个iframe嵌套，只获得当前iframe的页面的url参数</p>
+<input type="button" value="GetQuery" onclick="var key=GetQuery('key');alert(key);"/>GetQuery(key)
+<br/><hr/><br/>
+
+<h3>动态获取主tab的当前tab页iframeID</h3>
+<input type="button" value="tabiframeId" onclick="var id=tabiframeId();alert(id);"/>tabiframeId()
+<br/><hr/><br/>
+
+<h3>关闭主界面当前tab</h3>
+<p style="color:red;">注：当有多个iframe嵌套，必须要要求最顶层iframe有引入cnyui-framework.js</p>
+<input type="button" value="btn_back" onclick="btn_back();"/>btn_back()
+<br/><hr/><br/>
+
+<h3>页面中间加载进度对话窗</h3>
+<p> bool显示或隐藏加载进度对话窗，text加载时文本</p>
+<p style="color:red;">需在顶层iframe页面中添加两个标签如下：<br/>
+    <img src="../../images/demoimg/code_loading.png" alt=""/>
+</p>
+<input type="button" value="Loading" onclick="Loading(true);setTimeout(function(){Loading(false);},3000)"/>Loading(false)加载进度开始3s后结束
+<br/><hr/><br/>
+
+<h3>请求Ajax 数据参数类型为text</h3>
+<p style="color:red;">注：当有多个iframe嵌套，必须要要求最顶层iframe有引入cnyui-framework.js</p>
+请求url：<input type="text" id="getAjax_text_url"/>
+<input type="button" value="getAjax" onclick="var url=document.getElementById('getAjax_text_url').value;getAjax(url,'',function(data){alert('接收到返回数据：'+data);});"/>getAjax(url, postData, callBack)
+<h3>请求Ajax 数据参数类型为json对象</h3>
+<p style="color:red;">注：当有多个iframe嵌套，必须要要求最顶层iframe有引入cnyui-framework.js</p>
+请求url：<input type="text" id="getAjax_json_url"/>
+<input type="button" value="AjaxJson" onclick="var url=document.getElementById('getAjax_json_url').value;AjaxJson(url,{},function(data){alert('接收到返回数据：'+data);});"/>AjaxJson(url, postData, callBack)
+<br/><hr/><br/>
+
+<h3>刷新当前页面</h3>
+<input type="button" value="Replace" onclick="Replace();"/>Replace()
+<br/><hr/><br/>
+
+<h3>在当前页进行跳转页面</h3>
+<input type="button" value="Urlhref" onclick="Urlhref('http://www.baidu.com');"/>Urlhref(url)
+<br/><hr/><br/>
+
+<h3>格式化时间字符串</h3>
+<p style="color:red;">如：format="yyyy-MM-dd hh:mm:ss"</p>
+输入时间字符串 <input type="text" id="formatdatatime" /><input type="button" value="formatDate" onclick="var timeStr=document.getElementById('formatdatatime').value;var formatStr=formatDate (timeStr, 'yyyy-MM-dd hh:mm:ss');alert(formatStr)"/>formatDate(v, format)
+<br/><hr/><br/>
+
+<h3>获取yyyy-MM-dd hh:mm格式的当前时间</h3>
+<input type="button" value="CurrentTime" onclick="alert(CurrentTime())"/>CurrentTime()
+<br/><hr/><br/>
+
+<h3>获取和设置表单控件值</h3>
+<input type="button" value="设置值SetWebControls" onclick="var valStr=document.getElementById('setbt').value;var valJson=eval('('+valStr+')');console.log(valJson);SetWebControls(valJson)"/><input id="setbt" type="text" value="{'name':'陈芳','sex':'0','cls':'class3'}"/>SetWebControls(valJson)<br/>
+<input type="button" value="获取值GetWebControls" onclick="var ele=document.getElementById('myform');alert(JSON.stringify(GetWebControls(ele)))"/>GetWebControls(element)
+<p style="color:red;">注：设置和获取值时要求控件必须设置id属性,id即对应json的属性名</p>
+<form id="myform">
+    <fieldset>
+        <legend>health information</legend>
+        name: <input type="text" id="name" />sex: <input type="checkbox" id="sex"/>class: <select id="cls">
+        <option value ="class1">班级1</option>
+        <option value ="class2">班级2</option>
+        <option value="class3">班级3</option>
+    </select>
+    </fieldset>
+</form>
+<br/><hr/><br/>
+
+<h3>设置表单控件text</h3>
+<input type="button" value="设置值SetWebLable" onclick="var valStr=document.getElementById('setweblabel').value;var valJson=eval('('+valStr+')');SetWebLable(valJson)"/><input type="text" id="setweblabel" value="{'bt1':'bt设置值','lb1':'lb设置值'}"/>SetWebLable(valJson)<br/>
+    <fieldset>
+       <button id="bt1">button初始值</button>
+        <label id="lb1">lb初始值</label>
+    </select>
+    </fieldset>
+<br/><hr/><br/>
+
+<h3>获取选中的复选框的值</h3>
+<input type="button" value="CheckboxValue" onclick="alert(CheckboxValue());"/>CheckboxValue()<br/>
+checkbox1：<input type="checkbox" id="checkbox1" value="checkboxVal1"/>
+checkbox2：<input type="checkbox" id="checkbox2" value="checkboxVal2"/>
+checkbox3：<input type="checkbox" id="checkbox3" value="checkboxVal3"/>
+<br/><hr/><br/>
+
+<h3>限制输入框输入内容</h3>
+只能输入数字：<input type="text" value="123" id="limitInput1"/><input type="button" value="IsNumber" onclick="IsNumber('limitInput1');alert('设置成功，请在下面输入框输入任意字符进行测试！');"/>IsNumber(objId)<br/>
+只能输入数字和小数点：<input type="text" value="123" id="limitInput2"/><input type="button" value="IsMoney" onclick="IsMoney('limitInput2');alert('设置成功，请在下面输入框输入任意字符进行测试！');"/>IsMoney(objId)<br/>
+<br/><hr/><br/>
+
+<h3>数字转化</h3>
+<input type="button" value="FormatCurrency(128.9898)" onclick="alert(FormatCurrency(128.9898));"/>金额格式(保留2位小数)后格式化成金额形式,没有小数点会补位 <br/>
+<input type="button" value="ToDecimal(128.9898)" onclick="alert(ToDecimal(128.9898));"/>将浮点数四舍五入，取小数点后2位
+<br/><hr/><br/>
+
+<h3>查找数组中是否存在某个值</h3>
+<input type="button" value="ArrayExists(['val1','val2','val3'],'val2')" onclick="alert(ArrayExists(['val1','val2','val3'],'val2'));"/>ArrayExists(arr, val)
+<br/><hr/><br/>
+
+
+
+<h3>对话框</h3>
+<p style="color:red;">
+    注:1.url是相对于主机地址的相对地址 <br/>
+       2.关闭对话框调用closeDialog()时必须在对话框链接的页面iframe上，因此在openDialog的回调上关闭对话框使用top.frames[iframeId].closeDialog();
+         其中iframeId是openDialog的_id参数。因此必须要求对话框链接页面需引入jQuery、lhgdialog、cnyui-framework三个js
+    </p>
+<input type="button" value="openDialog(url, _id, _title, _width, _height, callBack)" onclick="openDialog('/Views/testDialog.html', 'testId', '普通自定义对话框', 300, 200, function(testId){alert('对话框确认按钮回调了，回调函数参数为链接页面iframe的Id');top.frames[testId].closeDialog();});"/><br/>
+<input type="button" value="FullopenDialog(url, _id, _title, callBack)" onclick="FullopenDialog('/Views/testDialog.html', 'testId', '大的对话框', function(){alert('对话框确认按钮回调了');});"/><br/>
+<input type="button" value="Dialog(url, _id, _title, _width, _height)" onclick="Dialog('/Views/testDialog.html', 'testId', '无按钮无回调对话框', 300, 200);"/><br/>
+<input type="button" value="FullDialog(url, _id, _title)" onclick="FullDialog('/Views/testDialog.html', 'testId', '无按钮无回调大的对话框');"/><br/>
+<input type="button" value="QueryDialog(url, _id, _title, _width, _height, callBack)" onclick="QueryDialog('/Views/testDialog.html', 'testId', '查询对话框', 300, 200, function(testId){alert('对话框确认按钮回调了，回调函数参数为链接页面iframe的Id');top.frames[testId].closeDialog();});"/><br/>
+<input type="button" value="MessageDialog(url, _id, _title, _width, _height, callBack)" onclick="MessageDialog('/Views/testDialog.html', 'testId', '高级查询专用对话框', 300, 200, function(testId){alert('对话框确认按钮回调了，回调函数参数是由链接页面中查询条件的组成的json对象');top.frames[testId].closeDialog();});"/><br/>
+<input type="button" value="PrintDialog(url, _id, _title, _width, _height, callBack)" onclick="PrintDialog('/Views/testDialog.html', 'testId', '打印专用对话框', 300, 200, function(testId){alert('对话框确认按钮回调了，回调函数参数为链接页面iframe的Id');top.frames[testId].closeDialog();});"/><br/>
+<br/><hr/><br/>
+
+<h3>弹出框</h3>
+<p style="color:red;">注:1.url是相对于主机地址的相对地址 <br/> </p>
+msg: 显示消息，time：停留时间(单位：秒)，type：类型 >1：成功，<1：失败，其他：警告<br/>
+<input type="button" value="tipDialog(msg, time, type)" onclick="tipDialog('短暂提示框', 3, 1)"/><br/>
+<input type="button" value="alertDialog(msg, type)" onclick="alertDialog('普通提示框', 1)"/><br/>
+<input type="button" value="confirmDialog(_title, msg, callBack)" onclick="confirmDialog('弹出框标题','提示信息', function(bResult){alert('回调了');})"/><br/><br/>
+<input type="button" value="TipMsg(msg, timeOut, type)" onclick="TipMsg('总当前页面顶部插入的信息',9000,1)"/><br/><br/>
+
+
+<br/><hr/><br/>
+
+
+<h3>在浏览器新打开页面</h3>
+<p style="color:red;">注:1.url是相对于主机地址的相对地址 <br/> </p>
+<input type="button" value="OpenWindow(url, title, w, h)" onclick="OpenWindow('/Views/testDialog.html', '打开网页', 300, 200)"/>
+<br/><hr/><br/>
+
+<h3>绑定右键菜单</h3>
+<p style="color:red;">注：请用IE测试</p>
+<input type="button" value="右击我" id="rightMenu"/>
+<div class="rightMenu">
+    <ul>
+        <li onclick="alert('右键菜单1');">右键菜单1</li>
+        <li onclick="alert('右键菜单2');">右键菜单2</li>
+        <li onclick="alert('右键菜单3');">右键菜单3</li>
+        <div class='m-split'></div>
+        <li>退出</li>
+    </ul>
+</div>
+<script type="text/javascript">
+    LoadrightMenu('#rightMenu');
+</script>
+<br/><hr/><br/>
+
+<h3>将原始checkbox和radio渲染成新的控件</h3>
+<p style="color:red;">
+    注：1.当前页面必须引入cnyui-framework.css
+        2.表单控件必须严格按照以下源码进行编写。
+</p>
+将原始checkbox和radio渲染成新的控件
+<form action="" id="testCustomInput">
+    <label for="cb1">checkbox1:</label><input type="checkbox" name="checkbox" id="cb1"/>
+    <label for="cb2">checkbox2:</label><input type="checkbox" name="checkbox" id="cb2"/>
+    <label for="rd1">riadio1:</label><input name="radio"  type="radio" id="rd1"/>
+    <label for="rd2">riadio2:</label><input name="radio" type="radio" id="rd2"/>
+    <label for="rd3">riadio3:</label><input name="radio" type="radio" id="rd3"/>
+</form>
+<script type="text/javascript">
+    $('#testCustomInput').customInput();
+</script>
+<br/><hr/><br/>
+
+<h3>带数据下拉菜单控件(数据是表格形式)</h3>
+<p style="color:red;">
+    注：1.autocomplete用于为指定元素绑定数据下拉菜单
+        2.autocompletekeydown用于绑定下拉菜单的键盘操作
+</p>
+单击输入框弹出下拉菜单<input type="text"  id="textComboMenu"/>
+<script type="text/javascript">
+    autocompletekeydown('textComboMenu', selectedCallBack)
+    var dataStr='<tr><td id="tr1td1">tr1td1Val</td><td id="tr1td2">tr1td1Va2</td></tr><tr><td id="tr2td1">tr2td1Val</td><td id="tr2td2">tr2td1Va2</td></tr>'
+    autocomplete('textComboMenu', $('#textComboMenu').width()+'px','100px', dataStr, selectedCallBack)
+    function selectedCallBack(data){
+        alert('选中数据为：' + JSON.stringify(data));
+//        $('#textComboMenu').val(JSON.stringify(data));
+    }
+</script>
+
+<br/><hr/><br/>
+
+<h3>带树形菜单下拉控件(数据是树形的)</h3>
+<p style="color:red;">
+    注：1.必须引入WDTree.js,即../../js/tree/tree.js和tree.css
+        2.tree.js里必须修改图片根路径cbiconpath
+        3.本函数使用WDTree，因此有子节点数据是嵌套在父节点的ChildNodes属性上。
+</p>
+单击输入框弹出下拉树菜单<input type="text"  id="testComboTree"/>
+<script type="text/javascript">
+    $(function () {
+        var WDTreeSettings = {
+            onnodeclick: function (item) {
+                $("#testComboTree").val(item.id);
+                $('#testComboTree').val(item.text);
+            },
+            url: "/TestServer/DWTreeTestData.js"
+        };
+        comboBoxDataTree('testComboTree', 100,WDTreeSettings)
+    });
+</script>
+<br/>
+<hr/>
+<br/>
+
+<h3>普通下拉菜单控件</h3>
+<select id="testComboCom">
+</select>
+单击输入框弹出下拉菜单
+<script type="text/javascript">
+    JsonBindDrop('#testComboCom', null, "[{Code:1,FullName:'一个'},{Code:2,FullName:'二个'},{Code:3,FullName:'三个'}]")
+</script>
+<br/><hr/><br/>
+
+<h3>主界面tab操作相关</h3>
+添加tab<input type="button"  value="AddTabMenu(tabid, url, name, img, Isclose, IsReplace, IsVisitorModule)" onclick="AddTabMenu('testNewTab', 'http://www.baidu.com', '测试tab', '../../images/Icon16/house.png', true, true, false)"/><br/>
+关闭当前tab<input type="button"  value="ThisCloseTab()" onclick="ThisCloseTab()"/><br/>
+关闭所有tab<input type="button"  value="AllcloseTab()" onclick="AllcloseTab()"/><br/>
+关闭当前tab之外的tab<input type="button"  value="othercloseTab()" onclick="othercloseTab()"/><br/>
+关闭指定的tab<input type="button"  value="RemoveDiv('Imain')" onclick="RemoveDiv('Imain')"/><br/>
+<br/>
+<hr/>
+<br/>
+
+<h3>系统操作日志写入</h3>
+访问模块时记录<input type="button"  value="VisitorModule('123', 'testModule')" onclick="VisitorModule('123', 'testModule')"/><br/>
+离开模块时记录<input type="button"  value="SetLeave('123', 'testModule')" onclick="SetLeave('123', 'testModule')"/><br/>
+<br/>
+<hr/>
+<br/>
+
+<h3>js获取网站根路径(站点及虚拟目录)</h3>
+<input type="button" value="RootPath()" onclick="alert(RootPath());"/>
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+</body>
+</html>
